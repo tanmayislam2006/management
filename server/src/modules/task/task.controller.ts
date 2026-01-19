@@ -42,7 +42,7 @@ const updateTask = async (req: Request, res: Response) => {
       req.params.taskID as string,
       req.body,
     );
-    res.status(201).json({
+    res.status(200).json({
       success: true,
       message: "Task Updated Successfully ",
       data: result,
@@ -55,8 +55,25 @@ const updateTask = async (req: Request, res: Response) => {
     });
   }
 };
+const deleteTask = async (req: Request, res: Response) => {
+  try {
+    const result = await taskService.deleteTask(req.params.taskID as string);
+    res.status(201).json({
+      success: true,
+      message: "Task Deleted Successfully ",
+      data: result,
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: "Task Deleted Failed ",
+      data: error,
+    });
+  }
+};
 export const taskController = {
   createTask,
   getAllTasks,
   updateTask,
+  deleteTask,
 };

@@ -29,8 +29,18 @@ const updateTask = async (taskID: string, updateInfo: Partial<Task>) => {
   });
   return result;
 };
+const deleteTask = async (taskID: string) => {
+  const result = await prisma.task.delete({
+    where: {
+      id: taskID,
+    },
+  });
+  return result;
+};
 export const taskService = {
   createTask,
   getAllTasks,
   updateTask,
+  deleteTask,
 };
+  
