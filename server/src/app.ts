@@ -13,8 +13,8 @@ app.use(
 app.use(express.json());
 
 
-app.use("/auth", authRouter);
-app.use("/task", taskRouter);
+app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/task", taskRouter);
 
 
 app.get("/", (req, res) => {
