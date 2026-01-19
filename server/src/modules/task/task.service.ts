@@ -12,6 +12,15 @@ const createTask = async (taskInfo: CreateTaskPayload) => {
   });
   return result;
 };
+const getAllTasks = async (userID: string) => {
+  const result = await prisma.task.findMany({
+    where: {
+      userID,
+    },
+  });
+  return result;
+};
 export const taskService = {
   createTask,
+  getAllTasks,
 };

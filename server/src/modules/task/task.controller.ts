@@ -17,7 +17,25 @@ const createTask = async (req: Request, res: Response) => {
     });
   }
 };
+const getAllTasks = async (req: Request, res: Response) => {
+  try {
+    const { userID } = req.params;
+    const result = await taskService.getAllTasks(userID as string);
+    res.status(200).json({
+      success: true,
+      message: "Task Fetch Successfully ",
+      data: result,
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: "Task Created Failed ",
+      data: error,
+    });
+  }
+};
 
 export const taskController = {
   createTask,
+  getAllTasks,
 };
