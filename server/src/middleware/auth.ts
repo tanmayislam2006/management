@@ -34,6 +34,7 @@ const auth = () => {
         config.jwtSecret as string,
       ) as JwtPayload;
       req.user = decoded;
+      next()
     } catch (error) {
       return res.status(401).json({
         success: false,
