@@ -17,6 +17,7 @@ const createTask = async (req: Request, res: Response) => {
     });
   }
 };
+
 const getAllTasks = async (req: Request, res: Response) => {
   try {
     const { userID } = req.params;
@@ -35,7 +36,27 @@ const getAllTasks = async (req: Request, res: Response) => {
   }
 };
 
+const updateTask = async (req: Request, res: Response) => {
+  try {
+    const result = await taskService.updateTask(
+      req.params.taskID as string,
+      req.body,
+    );
+    res.status(201).json({
+      success: true,
+      message: "Task Updated Successfully ",
+      data: result,
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: "Task Updated Failed ",
+      data: error,
+    });
+  }
+};
 export const taskController = {
   createTask,
   getAllTasks,
+  updateTask,
 };
